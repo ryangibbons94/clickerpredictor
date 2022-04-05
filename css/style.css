@@ -21,6 +21,20 @@
 /* BASE STYLES
 /*******************************************/
 
+.main{
+  width: 90%;
+  margin: auto;
+  padding: 3rem;
+  border: 1px solid #000;
+  margin:  2rem auto;
+}
+.top, .bottom{
+  display: flex;
+  justify-content: space-between;
+}
+.topright{
+  width: 80%;
+}
 h1{
      text-align:center;
    }  
@@ -30,32 +44,20 @@ h1{
        border: 1px dashed #dc0000;
        font-size: 20px;
        text-align: center;
-       margin: 0 auto;
-       margin-top: 50px;
        padding: 20px;
        user-select: none;
      }
    
      #clickarea {
-       width: 500px;
-       height : 300px;
+       width: 200px;
+       height : 500px;
        border: 2px solid #dc0000;
        font-size: 20px;
        text-align: center;
-       margin: 0 auto;
-       margin-top: 50px;
        padding: 20px;
        position: relative;
      }
    
-     #logo {
-       width: 200px;
-       height: 200px;
-       margin: 0 auto;
-       margin-top: 50px;
-       display: block;
-       user-select: none;
-     }
    
      #start {
        position: absolute;
@@ -86,3 +88,15 @@ h1{
        box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
                    inset 2px 2px 3px rgba(0, 0, 0, .6);
      }
+     .chart{
+       width: 70%;
+       height: 500px;
+     }
+     .myChart{
+       width: 90%;
+       height: 90%;
+     }
+
+     /* *{
+       outline: 1px solid red;
+     } */

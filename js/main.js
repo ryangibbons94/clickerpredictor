@@ -85,3 +85,37 @@
         prediction.textContent = `Based on your previous score, in ${select.value} seconds you should get ${newPrediction}`
       }
     }
+
+    //chart stuff
+    const data = {
+      datasets: [{
+        label: 'Scatter Dataset',
+        data: [{
+          x: 10,
+          y: 20
+      }, {
+          x: 15,
+          y: 10
+      }],
+        backgroundColor: 'rgb(255, 99, 132)'
+      }],
+    };
+    const config = {
+      type: 'scatter',
+      data: data,
+      options: {
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom'
+          }
+        }
+      }
+    };
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    
