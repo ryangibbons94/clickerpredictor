@@ -52,6 +52,7 @@
         timerTxt.textContent = duration.toFixed(3);
         clicksTxt.textContent = clicksBySeconds;
         gameCount++
+        removeData(myChart)
         addData(myChart,'Clicks Per Second',{x: duration, y: score})
         // we show start button to play another game
         show(startBtn);
@@ -73,9 +74,10 @@
         if (!ended) {
           score++;
           scoreTxt.textContent = score;
-          
+          addData(myChart,'Clicks Per Second',{x: duration, y: score})
         }
       });
+
     
     //add prediction after first game played
     
@@ -104,12 +106,13 @@
       type: 'scatter',
       data: data,
       options: {
+        animations: false,
         scales: {
           x: {
             type: 'linear',
             position: 'bottom',
             beginAtZero: true,
-            suggestedMax: 10
+            suggestedMax: 9
           },
           yAxis: {
             beginAtZero: true,
@@ -130,3 +133,25 @@
       });
       chart.update();
   }
+//   function removeData(chart) {
+//     chart.data.labels.pop();
+//     chart.data.datasets.forEach((dataset) => {
+//       if(gameCount > 20){
+//         dataset.data.splice(gameCount,(score))}
+//         else{
+//           dataset.data.splice(gameCount-1,(score))
+//           dataset.data.unshift();
+//         };
+//     });
+//     chart.update();
+// }
+
+function removeData(chart) {
+  chart.data.labels.pop();
+  chart.data.datasets.forEach((dataset) => {
+        dataset.data.splice(gameCount-1,(score))
+        dataset.data.unshift();
+
+  });
+  chart.update();
+}
