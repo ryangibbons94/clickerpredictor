@@ -52,6 +52,7 @@
         timerTxt.textContent = duration.toFixed(3);
         clicksTxt.textContent = clicksBySeconds;
         gameCount++
+        addData(myChart,'Clicks Per Second',{x: duration, y: score})
         // we show start button to play another game
         show(startBtn);
         // we display result to the user in delayed mode 
@@ -61,6 +62,7 @@
           ' seconds. It is ' + clicksBySeconds + 
           ' clicks per second. Try again!');
         }, 10);
+  
       }
       // we set a click event listener on the start button
       startBtn.addEventListener("click", function(e) {
@@ -71,12 +73,14 @@
         if (!ended) {
           score++;
           scoreTxt.textContent = score;
+          
         }
       });
     
     //add prediction after first game played
     
     select.addEventListener('change', predict)
+    
     
     function predict(){
       let newPrediction 
@@ -85,18 +89,14 @@
         prediction.textContent = `Based on your previous score, in ${select.value} seconds you should get ${newPrediction}`
       }
     }
-
     //chart stuff
+
+    var data1 = []
+
     const data = {
       datasets: [{
-        label: 'Scatter Dataset',
-        data: [{
-          x: 10,
-          y: 20
-      }, {
-          x: 15,
-          y: 10
-      }],
+        label: 'Clicks Per Second',
+        data: data1,
         backgroundColor: 'rgb(255, 99, 132)'
       }],
     };
@@ -107,7 +107,13 @@
         scales: {
           x: {
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom',
+            beginAtZero: true,
+            suggestedMax: 10
+          },
+          yAxis: {
+            beginAtZero: true,
+            suggestedMax: 90
           }
         }
       }
@@ -117,5 +123,10 @@
       document.getElementById('myChart'),
       config
     );
-
-    
+    function addData(chart, label, data) {
+      chart.data.labels.push(label);
+      chart.data.datasets.forEach((dataset) => {
+          dataset.data.push(data);
+      });
+      chart.update();
+  }
