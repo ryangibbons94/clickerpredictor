@@ -101,7 +101,7 @@
         data: data1,
         backgroundColor: 'rgb(255, 99, 132)'
       }],
-    }; 
+    };  
     const config = {
       type: 'scatter',
       data: data,
