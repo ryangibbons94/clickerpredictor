@@ -1,5 +1,6 @@
-
-    let score; // to store the current score
+  
+   
+   let score; // to store the current score
     //NEED TO ADD AN EVENT LISTENER THAT CHANGES THE DURATION EVERYTIME THE INPUT IS CHANGED
         let select = document.querySelector('select')
         // var duration = Number(select.value);
@@ -94,7 +95,6 @@
     //chart stuff
 
     var data1 = []
-
     const data = {
       datasets: [{
         label: 'Clicks Per Second',
@@ -119,7 +119,8 @@
             suggestedMax: 90
           }
         }
-      }
+      },
+      
     };
 
     const myChart = new Chart(
@@ -155,3 +156,4 @@ function removeData(chart) {
   });
   chart.update();
 }
+Chart.plugins.register(ChartRegressions);
