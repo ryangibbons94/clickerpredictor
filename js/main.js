@@ -88,6 +88,8 @@ clickArea.addEventListener("click", function (e) {
         score++;
         scoreTxt.textContent = score;
         addData(myChart, "Clicks Per Second", { x: duration, y: score });
+        updateDataTwo();
+        myChart.update();
     }
 });
 
@@ -149,6 +151,7 @@ const config = {
             yAxis: {
                 beginAtZero: true,
                 suggestedMax: 90,
+                suggestedMin: 0,
             },
         },
     },
