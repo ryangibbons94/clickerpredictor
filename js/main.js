@@ -1,6 +1,7 @@
 let score; // to store the current score
 //NEED TO ADD AN EVENT LISTENER THAT CHANGES THE DURATION EVERYTIME THE INPUT IS CHANGED
 let select = document.querySelector("select");
+let lineData = [];
 // var duration = Number(select.value);
 let duration;
 let startTime; // start time
@@ -53,6 +54,7 @@ function endGame() {
     gameCount++;
     removeData(myChart);
     addData(myChart, "Clicks Per Second", { x: duration, y: score });
+    lineData.push([duration, score]);
     // we show start button to play another game
     show(startBtn);
     // we display result to the user in delayed mode
@@ -88,9 +90,14 @@ select.addEventListener("change", predict);
 
 function predict() {
     let newPrediction;
-    if (gameCount > 0) {
+    if (gameCount === 1) {
+        console.log(regression.linear(lineData).predict(select.value)[1]);
         newPrediction = (score * select.value) / duration;
         prediction.textContent = `Based on your previous score, in ${select.value} seconds you should get ${newPrediction}`;
+    } else if (gameCount > 1) {
+        console.log(regression.linear(lineData).predict(select.value)[1]);
+        newPrediction = regression.linear(lineData).predict(select.value)[1];
+        prediction.textContent = `Based on all of your previous scores, in ${select.value} seconds you should get ${newPrediction}`;
     }
 }
 //chart stuff
@@ -154,9 +161,29 @@ function removeData(chart) {
     chart.update();
 }
 
+//regresstion stuff
 let fakeData = [
-    [0, 0],
+    [2, 7],
     [1, 5],
 ];
 
-let thing = regression.linear(data1);
+//need to convert data in the form "x: 1, y: 2" to [1,2]
+// function convertDataForRegression() {
+//     let xyPair = [];
+//     let newPair = [];
+//     for (let i = 0; i < data1.length; i++) {
+//         newpair = null;
+//         newPair.push(data1[i].x);
+//         newPair.push(data1[i].y);
+//         xyPair.push(newPair);
+//         return newPair;
+//     }
+//     return xyPair;
+// }
+
+// function regression() {
+//     let thing = regression.linear(convertDataForRegression(data1));
+//     return thing;
+// }
+
+let lineThing = regression.linear(fakeData);
