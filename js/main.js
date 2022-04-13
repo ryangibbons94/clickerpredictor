@@ -93,12 +93,11 @@
       }
     }
     //chart stuff
-
     var data1 = []
     const data = {
       datasets: [{
         label: 'Clicks Per Second',
-        data: data1,
+        data: data1,    
         backgroundColor: 'rgb(255, 99, 132)'
       }],
     };  
@@ -156,4 +155,9 @@ function removeData(chart) {
   });
   chart.update();
 }
-Chart.plugins.register(ChartRegressions);
+
+
+
+let fakeData = [[0,0], [1,5]]
+
+let thing = regression.linear(fakeData)
