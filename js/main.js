@@ -47,6 +47,7 @@ function startGame() {
 }
 // end game method
 function endGame() {
+    data2.splice(0, 1);
     // we write final stats
     let clicksBySeconds = (score / duration).toFixed(2);
     timerTxt.textContent = duration.toFixed(3);
@@ -70,6 +71,12 @@ function endGame() {
                 " clicks per second. Try again!"
         );
     }, 10);
+    predict();
+    updateDataTwo();
+    myChart.update();
+    // addData(myChart, "Prediction Line", data2);
+    // updateData2();
+    // addDataForLine(myChart, "Prediction Line", data2);
 }
 // we set a click event listener on the start button
 startBtn.addEventListener("click", function (e) {
@@ -91,28 +98,44 @@ select.addEventListener("change", predict);
 function predict() {
     let newPrediction;
     if (gameCount === 1) {
-        console.log(regression.linear(lineData).predict(select.value)[1]);
         newPrediction = (score * select.value) / duration;
         prediction.textContent = `Based on your previous score, in ${select.value} seconds you should get ${newPrediction}`;
     } else if (gameCount > 1) {
-        console.log(regression.linear(lineData).predict(select.value)[1]);
         newPrediction = regression.linear(lineData).predict(select.value)[1];
         prediction.textContent = `Based on all of your previous scores, in ${select.value} seconds you should get ${newPrediction}`;
     }
 }
 //chart stuff
 var data1 = [];
+var data2 = [];
+function updateDataTwo() {
+    data2.splice(0, 11);
+    let yval;
+    for (let i = 0; i <= 9; i++) {
+        let m = regression.linear(lineData).equation[0];
+        let b = regression.linear(lineData).equation[1];
+        yval = m * i + b;
+        data2.push({ x: i, y: yval });
+    }
+}
 const data = {
     datasets: [
         {
+            type: "scatter",
             label: "Clicks Per Second",
             data: data1,
+            backgroundColor: "black",
+        },
+        {
+            type: "line",
+            label: "Prediction Line",
+            data: data2,
+            borderColor: "rgb(255, 99, 132)",
             backgroundColor: "rgb(255, 99, 132)",
         },
     ],
 };
 const config = {
-    type: "scatter",
     data: data,
     options: {
         animations: false,
@@ -162,28 +185,26 @@ function removeData(chart) {
 }
 
 //regresstion stuff
-let fakeData = [
-    [2, 7],
-    [1, 5],
-];
 
-//need to convert data in the form "x: 1, y: 2" to [1,2]
-// function convertDataForRegression() {
-//     let xyPair = [];
-//     let newPair = [];
-//     for (let i = 0; i < data1.length; i++) {
-//         newpair = null;
-//         newPair.push(data1[i].x);
-//         newPair.push(data1[i].y);
-//         xyPair.push(newPair);
-//         return newPair;
-//     }
-//     return xyPair;
+// function updateData2() {
+//     data2 = [
+//         { x: 0, y: regression.linear(lineData).predict(0)[1] },
+//         { x: 9, y: regression.linear(lineData).predict(9)[1] },
+//     ];
 // }
 
-// function regression() {
-//     let thing = regression.linear(convertDataForRegression(data1));
-//     return thing;
+// function addLineData(chart, label, data) {
+//     data = [];
+//     chart.data.labels.push(label);
+//     data.push(updateData2());
+//     chart.update();
 // }
 
-let lineThing = regression.linear(fakeData);
+// function addDataForLine(chart, label, data) {
+//     data = [];
+//     chart.data.labels.push(label);
+//     chart.data.datasets.forEach((dataset) => {
+//         dataset.data.push(data);
+//     });
+//     chart.update();
+// }
