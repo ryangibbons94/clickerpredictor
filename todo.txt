@@ -1,0 +1,2 @@
+1. get rid of alert and add a 'ready button' to prevent users from accidentally playing another round
+2. add in a custom message depending on if the user beats the prediction or not

@@ -126,29 +126,55 @@ const data = {
             type: "scatter",
             label: "Clicks Per Second",
             data: data1,
-            backgroundColor: "black",
+            backgroundColor: "#000",
+            borderColor: "#000",
+            hoverBorderColor: "white",
+            fontColor: "white",
         },
         {
             type: "line",
             label: "Prediction Line",
             data: data2,
-            borderColor: "rgb(255, 99, 132)",
-            backgroundColor: "rgb(255, 99, 132)",
+            borderColor: "#d85c27",
+            backgroundColor: "#d85c27",
+            hoverBorderColor: "white",
+            fontColor: "white",
         },
     ],
 };
+Chart.defaults.plugins.legend.labels.color = "white";
+
 const config = {
     data: data,
     options: {
+        legend: {
+            labels: {
+                fontColor: "white",
+                color: "white",
+            },
+        },
         animations: false,
+
         scales: {
             x: {
+                ticks: {
+                    color: "white",
+                },
+                grid: {
+                    color: "black",
+                },
                 type: "linear",
                 position: "bottom",
                 beginAtZero: true,
                 suggestedMax: 9,
             },
             yAxis: {
+                ticks: {
+                    color: "white",
+                },
+                grid: {
+                    color: "black",
+                },
                 beginAtZero: true,
                 suggestedMax: 90,
                 suggestedMin: 0,

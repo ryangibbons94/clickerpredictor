@@ -19,15 +19,16 @@
                     Score: <span id="score"></span><br />
                     Clicks/s: <span id="clicks"></span>
                     <form>
-                        <select>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
+                        <label for="select">Time:</label>
+                        <select id="select">
+                            <option value="1">1 second</option>
+                            <option value="2">2 seconds</option>
+                            <option value="3">3 seconds</option>
+                            <option value="4">4 seconds</option>
+                            <option value="5">5 seconds</option>
+                            <option value="6">6 seconds</option>
+                            <option value="7">7 seconds</option>
+                            <option value="8">8 seconds</option>
                         </select>
                     </form>
                 </div>
@@ -36,12 +37,14 @@
                     <p>
                         <b>Directions:</b> Select a time from the drop down on
                         the left and then click the click area for that amount
-                        of time.
+                        of time. Watch the graph as your click speed is
+                        displayed and try to beat the prediction!
                     </p>
                 </div>
             </section>
             <section class="bottom">
                 <div id="clickarea">
+                    <!-- <button id="ready">Ready</button> -->
                     <button id="start">Start</button>
                 </div>
                 <section class="chart">
