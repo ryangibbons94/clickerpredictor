@@ -170,4 +170,7 @@ option {
     .topright {
         width: 100%;
     }
+    #content {
+        border: none;
+    }
 }
