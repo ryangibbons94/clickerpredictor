@@ -173,4 +173,11 @@ option {
     #content {
         border: none;
     }
+    .main {
+        padding: 0;
+        width: 98%;
+    }
+    body {
+        padding: 0;
+    }
 }
