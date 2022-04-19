@@ -1,5 +1,4 @@
 let score; // to store the current score
-//NEED TO ADD AN EVENT LISTENER THAT CHANGES THE DURATION EVERYTIME THE INPUT IS CHANGED
 let select = document.querySelector("select");
 let lineData = [];
 // var duration = Number(select.value);
@@ -44,7 +43,7 @@ function startGame() {
             endGame();
         }
     }, 1);
-}
+} 
 // end game method
 function endGame() {
     data2.splice(0, 1);
