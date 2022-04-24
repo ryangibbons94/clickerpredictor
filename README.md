@@ -3,12 +3,14 @@ A web app that allows the user to test their click speed and updates a graph in 
 
 **Link to project:** https://clicker-predictor.netlify.app/
 
-![screenshot of website](https://i.imgur.com/Qlrh7p1.jpg)
+![screenshot of website](https://ryangibbons.netlify.app/assets/images/clicker.gif)
 
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Chart.js, Regression.js
 
+## Optimizations
+If I had time I would change the alert to a modal that would tell the user whether they were successful or not in beating the predicted time. I would also allow the user to save click speeds in local storage and refer to them at a later date to track improvement in click speed over time.
 
 ## Challenges Faced/Lessons Learned:
 
