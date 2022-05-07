@@ -1,11 +1,11 @@
-let score; // to store the current score
+//initializing score variable so it can be used in multiple future functions
+let score;
 let select = document.querySelector("select");
 let lineData = [];
-// var duration = Number(select.value);
 let duration;
-let startTime; // start time
-let ended = true; // boolean indicating if game is ended
-// we get DOM References for some HTML elements
+let startTime;
+let ended = true;
+
 let timerTxt = document.getElementById("timer");
 let scoreTxt = document.getElementById("score");
 let clicksTxt = document.getElementById("clicks");
@@ -13,52 +13,57 @@ let startBtn = document.getElementById("start");
 let clickArea = document.getElementById("clickarea");
 let prediction = document.getElementById("prediction");
 let gameCount = 0;
-// we define two functions for showing or hiding a HTML element
+
 let show = function (elem) {
     elem.style.display = "inline";
 };
 let hide = function (elem) {
     elem.style.display = "none";
 };
-// Method called when the game starts
+//this is the function that starts each round
 function startGame() {
+    //set the time to the value that the user selects
     duration = Number(select.value);
     hide(startBtn);
+    //resets the score to 0
     score = 0;
     ended = false;
-    // we get start time
+    //grabs the current time
     startTime = new Date().getTime();
-    // we create a timer with the setInterval method
+    //this is the function that is running during the game
     let timerId = setInterval(function () {
         let total = (new Date().getTime() - startTime) / 1000;
-        // while total lower than duration, we update timer and the clicks by seconds
+        //if the game is still going, update the time and the score in the DOM
         if (total < duration) {
             timerTxt.textContent = total.toFixed(3);
             clicksTxt.textContent = (score / total).toFixed(2);
+            //if the game has ended call the end game function
         } else {
-            // otherwise, game is ended, we clear interval and we set game as ended
             ended = true;
             clearInterval(timerId);
-            // we call the end game method
+
             endGame();
         }
     }, 1);
-} 
-// end game method
+}
+
 function endGame() {
     data2.splice(0, 1);
-    // we write final stats
+    //grabs the clickers per second and puts it in a variable
     let clicksBySeconds = (score / duration).toFixed(2);
     timerTxt.textContent = duration.toFixed(3);
     clicksTxt.textContent = clicksBySeconds;
+    //increments the gameCount variable(this is used to decide whether to use the unit rate or linear regression to make a prediction)
     gameCount++;
+    //this removes all of the points that were placed on the chart during the round
     removeData(myChart);
+    //this places one point on the chart
     addData(myChart, "Clicks Per Second", { x: duration, y: score });
+    //this adds the data to the dataset that the regression line uses
     lineData.push([duration, score]);
-    // we show start button to play another game
+    //this shows the start button again so the user can start another round
     show(startBtn);
-    // we display result to the user in delayed mode
-    //to update DOM elements just before the alert
+    //this alerts the user their score, it uses set timeout so that the DOM has a chance to refresh with the score before the alert pops up
     setTimeout(function () {
         alert(
             "You made " +
@@ -70,18 +75,20 @@ function endGame() {
                 " clicks per second. Try again!"
         );
     }, 10);
+    //this runs the predict function which updates the DOM with a prediction based on the users previous scores
     predict();
+    //this updates the dataset to plot the line of regression on the chart
     updateDataTwo();
+    //this updates the chart to show all of the changes made to the data sets, both for the individual points and the line of regression
     myChart.update();
-    // addData(myChart, "Prediction Line", data2);
-    // updateData2();
-    // addDataForLine(myChart, "Prediction Line", data2);
+    //this shows the start button again so the user can start another round
+    show(startBtn);
 }
-// we set a click event listener on the start button
+
 startBtn.addEventListener("click", function (e) {
     startGame();
 });
-// we add a click event listener on the click area div to update the score when the user will click
+
 clickArea.addEventListener("click", function (e) {
     if (!ended) {
         score++;
@@ -91,8 +98,6 @@ clickArea.addEventListener("click", function (e) {
         myChart.update();
     }
 });
-
-//add prediction after first game played
 
 select.addEventListener("change", predict);
 
@@ -106,7 +111,7 @@ function predict() {
         prediction.textContent = `Based on all of your previous scores, in ${select.value} seconds you should get ${newPrediction}`;
     }
 }
-//chart stuff
+
 var data1 = [];
 var data2 = [];
 function updateDataTwo() {
@@ -190,18 +195,6 @@ function addData(chart, label, data) {
     });
     chart.update();
 }
-//   function removeData(chart) {
-//     chart.data.labels.pop();
-//     chart.data.datasets.forEach((dataset) => {
-//       if(gameCount > 20){
-//         dataset.data.splice(gameCount,(score))}
-//         else{
-//           dataset.data.splice(gameCount-1,(score))
-//           dataset.data.unshift();
-//         };
-//     });
-//     chart.update();
-// }
 
 function removeData(chart) {
     chart.data.labels.pop();
@@ -211,28 +204,3 @@ function removeData(chart) {
     });
     chart.update();
 }
-
-//regresstion stuff
-
-// function updateData2() {
-//     data2 = [
-//         { x: 0, y: regression.linear(lineData).predict(0)[1] },
-//         { x: 9, y: regression.linear(lineData).predict(9)[1] },
-//     ];
-// }
-
-// function addLineData(chart, label, data) {
-//     data = [];
-//     chart.data.labels.push(label);
-//     data.push(updateData2());
-//     chart.update();
-// }
-
-// function addDataForLine(chart, label, data) {
-//     data = [];
-//     chart.data.labels.push(label);
-//     chart.data.datasets.forEach((dataset) => {
-//         dataset.data.push(data);
-//     });
-//     chart.update();
-// }
