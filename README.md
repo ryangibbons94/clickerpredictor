@@ -3,12 +3,14 @@ A web app that allows the user to test their click speed and updates a graph in 
 
 **Link to project:** https://clicker-predictor.netlify.app/
 
-![screenshot of website](https://i.imgur.com/Qlrh7p1.jpg)
+![screenshot of website](https://ryangibbons.netlify.app/assets/images/clicker.gif)
 
 ## How It's Made:
 
 **Tech used:** HTML, CSS, JavaScript, Chart.js, Regression.js
 
+## Optimizations
+If I had time I would change the alert to a modal that would tell the user whether they were successful or not in beating the predicted time. I would also allow the user to save click speeds in local storage and refer to them at a later date to track improvement in click speed over time.
 
 ## Challenges Faced/Lessons Learned:
 
@@ -19,5 +21,3 @@ So I wanted the user to be able to see their point going up on the graph with ev
 2. Regression.js and Chart.js wanted the data in two different forms:
 
 So chart.js wanted the data in an array of objects with the first key being the x value and the second key being the y value. Regression.js, however, wanted the data in an array of arrays with the inner arrays representing the coordinates in the form (x,y) -> [x,y]. At first, I thought it would be complicated and I'd have to convert it from the chart.js way to the regression.js way but I ended up just creating a second set of data and pushing in the correctly formated data after each round for regression.js. 
-
-# booklog
