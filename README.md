@@ -12,6 +12,8 @@ A web app that allows the user to test their click speed and updates a graph in 
 ## Optimizations
 If I had time I would change the alert to a modal that would tell the user whether they were successful or not in beating the predicted time. I would also allow the user to save click speeds in local storage and refer to them at a later date to track improvement in click speed over time.
 
+I would also change my use of chart.js and regression.js to importing the packages via npm rather than a cdn.
+
 ## Challenges Faced/Lessons Learned:
 
 1. Allowing the user to see the point going up on the graph as they are clicking:
