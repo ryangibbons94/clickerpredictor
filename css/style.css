@@ -21,7 +21,7 @@
     clear: both;
 }
 body {
-    background-color: #14365d;
+    background-color: #212b36;
 }
 
 /******************************************
@@ -30,12 +30,13 @@ body {
 
 .main {
     width: 90%;
+    max-width: 1600px;
     margin: auto;
     padding: 3rem;
     /* border: 1px solid #000; */
     margin: 2rem auto;
     border-radius: 10px;
-    background-color: #2f5c8f;
+    background-color: #384450;
 }
 
 .top,
@@ -59,7 +60,7 @@ h1 {
 }
 
 #content {
-    width: 200px;
+    width: 280px;
     /* border: 1px solid black; */
     border-top: 0;
     border-left: 0;
@@ -67,6 +68,10 @@ h1 {
     text-align: center;
     padding: 20px;
     user-select: none;
+}
+#content p,
+#content label {
+    text-align: left;
 }
 
 #clickarea {
@@ -79,10 +84,14 @@ h1 {
     padding: 20px;
     position: relative;
     background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 select,
 option {
     color: black;
+}
+select {
+    display: inline;
 }
 
 #start {
@@ -99,14 +108,16 @@ option {
     text-shadow: 1px 1px 1px #000;
     border-radius: 10px;
     background-color: rgba(220, 0, 0, 1);
-    background-image: linear-gradient(
+    background-color: #e1a60c;
+    cursor: pointer;
+    /* background-image: linear-gradient(
         to top left,
         rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.2) 30%,
         rgba(0, 0, 0, 0)
     );
     box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6); */
 }
 #ready {
     position: absolute;
@@ -133,7 +144,7 @@ option {
 }
 
 #start:hover {
-    background-color: rgba(255, 0, 0, 1);
+    background-color: #f8b60e;
 }
 #ready:hover {
     background-color: rgba(0, 0, 255, 1);
@@ -145,7 +156,8 @@ option {
         inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }
 .chart {
-    width: 70%;
+    width: 80%;
+    max-width: 1200px;
     height: 50%;
 }
 /* .myChart {
