@@ -187,7 +187,10 @@ const config = {
     },
 };
 
+//initialize the chart
 const myChart = new Chart(document.getElementById("myChart"), config);
+
+//add data to the chart
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
@@ -196,6 +199,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+//remove data function from the chart to remove just the values that were added in the previoius round
 function removeData(chart) {
     chart.data.labels.pop();
     chart.data.datasets.forEach((dataset) => {
